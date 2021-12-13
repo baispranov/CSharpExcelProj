@@ -1,0 +1,19 @@
+On Error Resume Next
+Set args = Wscript.Arguments
+set strFileName = Wscript.StdIn
+strFileName = Wscript.Arguments.Item(0)
+
+ 
+ 
+Set objXl = GetObject(, "Excel.Application")
+objExcel.Application.Visible = True
+objXl.ActiveWorkbook.SaveAs(strFileName) 
+objXl.ActiveWorkbook.Close
+objExcel.Application.Quit
+
+
+
+if Err.Number <> 0 Then
+Wscript.StdOut.Writeline(Err.Description)
+ 
+End if
