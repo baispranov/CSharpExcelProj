@@ -1,0 +1,9 @@
+
+
+Connecting string to connect CSV or Txt File :
+
+Driver={Microsoft Text Driver (*.txt; *.csv)};Dbq=$CSV_FOLDER_PATH$;Extensions=asc,csv,tab,txt;
+
+Select Query to Read data form CSV or Txt File :
+
+SELECT * from [$CSV_FILE_NAME$];
