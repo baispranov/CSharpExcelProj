@@ -1,0 +1,3 @@
+To Extract only Numbers : [^a-zA-Z]+
+
+To Extract only Characters : [^0-9]+
