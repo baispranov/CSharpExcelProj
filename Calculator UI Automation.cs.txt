@@ -1,0 +1,123 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Automation;
+
+namespace UIAutomationProject
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Program p1 = new Program();
+            var result = p1.CalcMethod();
+            
+            Console.WriteLine(result);
+            Console.ReadLine();
+
+        }
+
+        public int CalcMethod() 
+        {
+            // get handle for calculator 
+            IntPtr hWnd = IntPtr.Zero;
+            foreach (Process pList in Process.GetProcesses())
+            {
+                if (pList.MainWindowTitle.Contains("Calculator"))
+                {
+                    hWnd = pList.MainWindowHandle;
+                    break;
+                }
+            }
+
+            // Load Root Element from System for Calculator and Activate window 
+            AutomationElement root = AutomationElement.FromHandle(hWnd);
+
+            root.SetFocus(); // Activating Calculator window 
+            // if set focus throws exception then click - alt + tab and make sure , calculator window is next window after visual studio 
+ 
+            var RootWindowListOne = root.FindAll(TreeScope.Descendants, Condition.TrueCondition);
+
+            // Commented below code to print the class and name of each element from Calculator window 
+            //for (int i = 0; i < RootWindowListOne.Count; i++)
+            //{
+            //    Console.WriteLine(RootWindowListOne[i].Current.ClassName.ToString()+"_"+ RootWindowListOne[i].Current.Name.ToString());
+            //}
+
+            // Click clear to in Calculator Code 
+            for (int i = 0; i < RootWindowListOne.Count; i++)
+            {
+                Console.WriteLine(RootWindowListOne[i].Current.ClassName.ToString() + "_" + RootWindowListOne[i].Current.Name.ToString());
+                if (RootWindowListOne[i].Current.ClassName.ToString() == "Button" && RootWindowListOne[i].Current.Name.ToString() == "Clear")
+                {
+                    var ElementPlusBtn = RootWindowListOne[i];
+                    InvokePattern invoke = ElementPlusBtn.GetCurrentPattern(InvokePattern.Pattern) as InvokePattern;
+                    invoke.Invoke();
+                    break;
+                }
+            }
+
+            // Click One in Calculator Code 
+            for (int i = 0; i < RootWindowListOne.Count; i++)
+            {
+                Console.WriteLine(RootWindowListOne[i].Current.ClassName.ToString() + "_" + RootWindowListOne[i].Current.Name.ToString());
+                if (RootWindowListOne[i].Current.ClassName.ToString() == "Button" && RootWindowListOne[i].Current.Name.ToString() == "One")
+                {
+                    var ElementPlusBtn = RootWindowListOne[i];
+                    InvokePattern invoke = ElementPlusBtn.GetCurrentPattern(InvokePattern.Pattern) as InvokePattern;
+                    invoke.Invoke();
+                    break;
+                }
+
+            }
+
+            // Click plus in Calculator Code 
+            for (int i = 0; i < RootWindowListOne.Count; i++)
+            {
+                Console.WriteLine(RootWindowListOne[i].Current.ClassName.ToString() + "_" + RootWindowListOne[i].Current.Name.ToString());
+                if (RootWindowListOne[i].Current.ClassName.ToString() == "Button" && RootWindowListOne[i].Current.Name.ToString() == "Plus")
+                {
+                    var ElementPlusBtn = RootWindowListOne[i];
+                    InvokePattern invoke = ElementPlusBtn.GetCurrentPattern(InvokePattern.Pattern) as InvokePattern;
+                    invoke.Invoke();
+                    break;
+                }
+
+            }
+
+            // Click Three in Calculator Code 
+            for (int i = 0; i < RootWindowListOne.Count; i++)
+            {
+                Console.WriteLine(RootWindowListOne[i].Current.ClassName.ToString() + "_" + RootWindowListOne[i].Current.Name.ToString());
+                if (RootWindowListOne[i].Current.ClassName.ToString() == "Button" && RootWindowListOne[i].Current.Name.ToString() == "Three")
+                {
+                    var ElementPlusBtn = RootWindowListOne[i];
+                    InvokePattern invoke = ElementPlusBtn.GetCurrentPattern(InvokePattern.Pattern) as InvokePattern;
+                    invoke.Invoke();
+                    break;
+                }
+
+            }
+
+            // Click equal to in Calculator Code 
+            for (int i = 0; i < RootWindowListOne.Count; i++)
+            {
+                Console.WriteLine(RootWindowListOne[i].Current.ClassName.ToString() + "_" + RootWindowListOne[i].Current.Name.ToString());
+                if (RootWindowListOne[i].Current.ClassName.ToString() == "Button" && RootWindowListOne[i].Current.Name.ToString() == "Equals")
+                {
+                    var ElementPlusBtn = RootWindowListOne[i];
+                    InvokePattern invoke = ElementPlusBtn.GetCurrentPattern(InvokePattern.Pattern) as InvokePattern;
+                    invoke.Invoke();
+                    break;
+                }
+
+            }
+            return 0;
+        }
+
+
+    }
+}
